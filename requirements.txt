@@ -1,6 +1,6 @@
 fastapi
 uvicorn[standard]
 pydantic
-numpy
+numpy<2
 matplotlib
 torch
