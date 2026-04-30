@@ -13,17 +13,24 @@ def compare_pinn_vs_solver():
     x_grid, y_grid, T_solver = solve_steady_state_heat_2d(
         nx=nx,
         ny=ny,
-        length=1.0,
-        width=1.0,
+        length=0.1,
+        width=0.05,
         heat_source=100000,
         boundary_temperature=25.0,
     )
 
-    coords = np.stack([x_grid.flatten(), y_grid.flatten()], axis=1)
+    x_norm = x_grid / 0.1
+    y_norm = y_grid / 0.05
+
+    coords = np.stack([x_norm.flatten(), y_norm.flatten()], axis=1)
     coords_tensor = torch.tensor(coords, dtype=torch.float32)
 
     with torch.no_grad():
-        T_pinn = model(coords_tensor).numpy().reshape((ny, nx))
+        T_pinn_norm = model(coords_tensor).numpy().reshape((ny, nx))
+
+    T_min = T_solver.min()
+    T_max = T_solver.max()
+    T_pinn = T_pinn_norm * (T_max - T_min) + T_min
 
     error = T_pinn - T_solver
 
