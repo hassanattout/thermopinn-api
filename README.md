@@ -84,7 +84,14 @@ POST /predict-pinn
 
 ## Visualizations
 
-Solver vs PINN results available in /results folder.
+### Solver thermal map
+![Solver Thermal Map](results/thermal_map.png)
+
+### PINN thermal map
+![PINN Thermal Map](results/pinn_thermal_map.png)
+
+### Error metrics
+![Error Metrics](results/error_metrics.png)
 
 ---
 
