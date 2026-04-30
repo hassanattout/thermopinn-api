@@ -1,4 +1,3 @@
-cat > README.md << 'EOF'
 # ThermoPINN API
 
 Physics-informed neural network for real-time thermal prediction in engineering systems.
@@ -319,4 +318,3 @@ thermopinn-api/
 Hassan Attout
 Mechanical & Energy Engineering
 AI for Engineering Systems
-EOF
