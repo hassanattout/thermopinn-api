@@ -3,5 +3,9 @@ __pycache__/
 *.pyc
 .DS_Store
 .env
-results/*.png
+results/*
+!results/thermal_map.png
+!results/pinn_thermal_map.png
+!results/error_metrics.png
+!results/benchmark_metrics.csv
 results/*.csv
