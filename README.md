@@ -4,6 +4,12 @@ Physics-informed neural network for real-time thermal prediction in engineering 
 
 ---
 
+## Live API
+
+https://thermopinn-api.onrender.com/docs
+
+---
+
 ## Overview
 
 Thermal management is critical in modern systems such as:
