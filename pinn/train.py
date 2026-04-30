@@ -23,7 +23,7 @@ def train_pinn(epochs=2000):
         if epoch % 200 == 0:
             print(f"Epoch {epoch}, Loss: {loss.item():.6f}")
 
-    torch.save(model.state_dict(), "pinn_model.pth")
+    torch.save(model.state_dict(), "models/pinn_model.pth")
     print("Model saved.")
 
 
