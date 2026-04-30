@@ -5,6 +5,28 @@ Physics-informed neural network for real-time thermal prediction in engineering 
 
 **Live API:** https://thermopinn-api.onrender.com/docs
 
+![PINN Thermal Map](results/pinn_thermal_map.png)
+
+---
+
+## What makes this project different
+
+Most ML projects:
+
+- train a model
+- report accuracy
+- stop at a notebook
+
+This project:
+
+- integrates physics and machine learning
+- compares against a numerical heat solver
+- benchmarks performance
+- exposes the model through FastAPI
+- is deployed as a live cloud API on Render
+
+This is closer to a real engineering ML system than a typical ML demo.
+
 ---
 
 ## Why this project matters
@@ -26,8 +48,6 @@ This project demonstrates an end-to-end engineering ML system that combines:
 - FastAPI model serving
 - cloud deployment with Render
 
-The goal is not just to train a model, but to build a deployable system for physics-based machine learning.
-
 ---
 
 ## Key Results
@@ -41,27 +61,48 @@ The goal is not just to train a model, but to build a deployable system for phys
 | PINN inference time | ~0.036 s |
 | Speedup | ~3.5x |
 
+Note: Small boundary deviations are expected due to neural approximation.
+
+---
+
+## Engineering Insight
+
+This project demonstrates:
+
+- using physics to reduce data requirements
+- replacing expensive simulations with learned surrogates
+- building real-time prediction systems
+- bridging mechanical engineering and machine learning
+
+Potential use cases:
+
+- battery thermal management
+- real-time simulation acceleration
+- optimization loops
+- digital twins
+- electronics cooling
+
 ---
 
 ## Architecture
 
 ```text
 Numerical Heat Solver
-        ↓
+↓
 Ground Truth Temperature Field
-        ↓
+↓
 PINN Training
-        ↓
+↓
 Model Inference
-        ↓
+↓
 FastAPI Endpoints
-        ↓
+↓
 Render Deployment
 ```
 
-The numerical solver generates the reference temperature field.  
-The PINN learns an approximation of that field.  
-The trained model is then exposed through FastAPI and deployed as a live API on Render.
+The numerical solver generates the reference temperature field.
+The PINN learns an approximation of that field.
+The trained model is exposed through FastAPI and deployed as a live API on Render.
 
 ---
 
@@ -106,10 +147,10 @@ Example request:
 
 ```json
 {
-  "length": 0.1,
-  "width": 0.05,
-  "heat_power": 100000,
-  "ambient_temperature": 25
+"length": 0.1,
+"width": 0.05,
+"heat_power": 100000,
+"ambient_temperature": 25
 }
 ```
 
@@ -123,8 +164,8 @@ Example request:
 
 ```json
 {
-  "x": 0.5,
-  "y": 0.5
+"x": 0.5,
+"y": 0.5
 }
 ```
 
@@ -132,9 +173,9 @@ Example response:
 
 ```json
 {
-  "x": 0.5,
-  "y": 0.5,
-  "predicted_temperature": 62.09
+"x": 0.5,
+"y": 0.5,
+"predicted_temperature": 62.09
 }
 ```
 
@@ -150,8 +191,8 @@ Test the `/predict-pinn` endpoint with:
 
 ```json
 {
-  "x": 0.5,
-  "y": 0.5
+"x": 0.5,
+"y": 0.5
 }
 ```
 
@@ -234,25 +275,25 @@ The `$PORT` variable is provided automatically by Render.
 ```text
 thermopinn-api/
 ├── app/
-│   └── main.py
+│ └── main.py
 ├── fem/
-│   ├── heat_solver_2d.py
-│   └── visualize.py
+│ ├── heat_solver_2d.py
+│ └── visualize.py
 ├── pinn/
-│   ├── model.py
-│   ├── train.py
-│   ├── inference.py
-│   └── visualize_pinn.py
+│ ├── model.py
+│ ├── train.py
+│ ├── inference.py
+│ └── visualize_pinn.py
 ├── experiments/
-│   ├── compare_pinn_vs_solver.py
-│   └── generate_benchmark_artifacts.py
+│ ├── compare_pinn_vs_solver.py
+│ └── generate_benchmark_artifacts.py
 ├── models/
-│   └── pinn_model.pth
+│ └── pinn_model.pth
 ├── results/
-│   ├── thermal_map.png
-│   ├── pinn_thermal_map.png
-│   ├── error_metrics.png
-│   └── benchmark_metrics.csv
+│ ├── thermal_map.png
+│ ├── pinn_thermal_map.png
+│ ├── error_metrics.png
+│ └── benchmark_metrics.csv
 ├── requirements.txt
 ├── runtime.txt
 └── README.md
@@ -269,12 +310,13 @@ thermopinn-api/
 - improved physics loss integration
 - GPU inference
 - advanced deployment pipeline
+- `/predict-grid` endpoint for full-field PINN prediction
 
 ---
 
 ## Author
 
-Hassan Attout  
-Mechanical & Energy Engineering  
+Hassan Attout
+Mechanical & Energy Engineering
 AI for Engineering Systems
 EOF
