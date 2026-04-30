@@ -1,3 +1,7 @@
+import matplotlib
+
+matplotlib.use("Agg")
+
 import matplotlib.pyplot as plt
 from fem.heat_solver_2d import solve_steady_state_heat_2d
 
