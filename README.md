@@ -30,6 +30,29 @@ This project builds a Physics-Informed Neural Network (PINN) that:
 
 ---
 
+## Why this matters
+
+Modern systems (EV batteries, data centers, electronics) are limited by thermal constraints.
+
+Traditional solvers are accurate but too slow for real-time decision-making.
+
+This project shows how Physics-Informed Neural Networks can:
+
+- Respect physical laws
+- Deliver near real-time predictions
+- Enable deployment in production systems
+
+---
+
+## Architecture
+
+1. FEM solver generates ground truth data
+2. PINN learns temperature distribution
+3. FastAPI exposes inference endpoints
+4. Render deploys the model as a live service
+
+---
+
 ## Tech Stack
 
 - PyTorch
@@ -46,6 +69,14 @@ This project builds a Physics-Informed Neural Network (PINN) that:
 - PINN training with supervised + normalized learning
 - API endpoints for simulation and prediction
 - Benchmark comparison (PINN vs solver)
+
+---
+
+## Key Results
+
+- 3.5x faster than numerical solver
+- MAE: 0.18 °C
+- RMSE: 0.26 °C
 
 ---
 
