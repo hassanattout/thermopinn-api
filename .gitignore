@@ -5,3 +5,7 @@ __pycache__/
 .env
 .env.local
 .pytest_cache/
+
+# Generated outputs
+results/*.png
+results/*.csv
