@@ -274,31 +274,55 @@ The `$PORT` variable is provided automatically by Render.
 ```text
 thermopinn-api/
 ├── app/
-│ └── main.py
+│   ├── main.py
+│   ├── api/
+│   │   └── routes.py
+│   ├── schemas/
+│   │   └── thermal.py
+│   └── services/
+│       ├── pinn_service.py
+│       ├── fem_service.py
+│       └── comparison_service.py
 ├── fem/
-│ ├── heat_solver_2d.py
-│ └── visualize.py
+│   ├── heat_solver_2d.py
+│   └── visualize.py
 ├── pinn/
-│ ├── model.py
-│ ├── train.py
-│ ├── inference.py
-│ └── visualize_pinn.py
+│   ├── model.py
+│   ├── train.py
+│   ├── inference.py
+│   └── visualize_pinn.py
 ├── experiments/
-│ ├── compare_pinn_vs_solver.py
-│ └── generate_benchmark_artifacts.py
+│   ├── compare_pinn_vs_solver.py
+│   └── generate_benchmark_artifacts.py
 ├── models/
-│ └── pinn_model.pth
+│   └── pinn_model.pth
 ├── results/
-│ ├── thermal_map.png
-│ ├── pinn_thermal_map.png
-│ ├── error_metrics.png
-│ └── benchmark_metrics.csv
+│   ├── thermal_map.png
+│   ├── pinn_thermal_map.png
+│   ├── error_metrics.png
+│   └── benchmark_metrics.csv
 ├── requirements.txt
-├── runtime.txt
 └── README.md
 ```
 
 ---
+
+
+
+## Production API Endpoints
+
+| Method | Endpoint | Purpose |
+|--------|----------|---------|
+| GET | `/health` | Check API and model status |
+| POST | `/simulate` | Run FEM thermal simulation |
+| GET | `/thermal-map` | Return generated FEM heatmap |
+| POST | `/predict-pinn` | Predict temperature at one point |
+| POST | `/predict-batch` | Predict temperature at multiple points |
+| POST | `/predict-grid` | Predict full thermal field on a grid |
+| POST | `/compare` | Compare FEM solver against PINN surrogate |
+| GET | `/metrics` | Download benchmark metrics |
+
+The `/compare` endpoint is the core validation layer. It shows whether the learned PINN surrogate can approximate the numerical physics solver while reducing inference time.
 
 ## Future Improvements
 
