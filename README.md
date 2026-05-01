@@ -315,6 +315,6 @@ thermopinn-api/
 
 ## Author
 
-Hassan Attout
-Mechanical & Energy Engineering
+Hassan Attout  
+Mechanical & Energy Engineering  
 AI for Engineering Systems
