@@ -41,6 +41,34 @@ def generate_benchmark_artifacts():
 
     error = T_pinn - T_solver
 
+    vmin = min(T_solver.min(), T_pinn.min())
+    vmax = max(T_solver.max(), T_pinn.max())
+
+    abs_error = np.abs(error)
+
+    fig, axs = plt.subplots(1, 3, figsize=(15, 4))
+
+    cs0 = axs[0].contourf(x_grid, y_grid, T_solver, levels=50, vmin=vmin, vmax=vmax)
+    axs[0].set_title("Numerical Solver")
+    axs[0].set_xlabel("Length (m)")
+    axs[0].set_ylabel("Width (m)")
+
+    cs1 = axs[1].contourf(x_grid, y_grid, T_pinn, levels=50, vmin=vmin, vmax=vmax)
+    axs[1].set_title("PINN Prediction")
+    axs[1].set_xlabel("Length (m)")
+    axs[1].set_ylabel("Width (m)")
+
+    cs2 = axs[2].contourf(x_grid, y_grid, abs_error, levels=50)
+    axs[2].set_title("Absolute Error")
+    axs[2].set_xlabel("Length (m)")
+    axs[2].set_ylabel("Width (m)")
+
+    fig.colorbar(cs0, ax=axs[:2], label="Temperature (°C)")
+    fig.colorbar(cs2, ax=axs[2], label="Error (°C)")
+
+    plt.savefig("results/pinn_vs_solver_comparison.png", dpi=300, bbox_inches="tight")
+    plt.close()
+    
     mae = np.mean(np.abs(error))
     rmse = np.sqrt(np.mean(error**2))
     max_error = np.max(np.abs(error))
