@@ -1,26 +1,39 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from app.api.routes import router
+from app.core.config import settings
 
 
 app = FastAPI(
-    title="ThermoPINN API",
+    title=settings.app_name,
     description="""
 Physics-informed thermal prediction API for engineering systems.
 
-This API combines:
+This API provides:
 
 - FEM-based thermal simulation
-- Physics-informed neural network inference
-- Batch and grid prediction
+- PINN surrogate inference
+- Batch prediction
+- Grid prediction
 - FEM vs PINN benchmarking
-- Real-time engineering ML deployment
+- Generated thermal map access
+- Deployment-ready engineering ML backend
 
-Use this project as a deployable backend for simulation acceleration, digital twins, optimization loops, and thermal monitoring systems.
+This project demonstrates how physics-based simulation and machine learning can be combined into a real API system for simulation acceleration, digital twins, thermal monitoring, and optimization workflows.
 """,
-    version="1.0.0",
+    version=settings.app_version,
     contact={
         "name": "Hassan Attout",
     },
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(router)
