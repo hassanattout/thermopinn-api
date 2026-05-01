@@ -1,20 +1,13 @@
-from fastapi import APIRouter
 from pathlib import Path
 
-from app.schemas.thermal import (
-    SimulationInput,
-    PointInput,
-    BatchPointInput,
-    GridInput,
-)
-from app.services.pinn_service import pinn_service, MODEL_PATH
-from app.services.fem_service import (
-    run_simulation,
-    get_thermal_map_file,
-    get_metrics_file,
-)
-from app.services.comparison_service import compare_fem_vs_pinn
+from fastapi import APIRouter
 
+from app.schemas.thermal import (BatchPointInput, GridInput, PointInput,
+                                 SimulationInput)
+from app.services.comparison_service import compare_fem_vs_pinn
+from app.services.fem_service import (get_metrics_file, get_thermal_map_file,
+                                      run_simulation)
+from app.services.pinn_service import MODEL_PATH, pinn_service
 
 router = APIRouter()
 

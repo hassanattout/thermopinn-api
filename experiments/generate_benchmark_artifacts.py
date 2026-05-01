@@ -1,8 +1,9 @@
 import csv
 import time
+
+import matplotlib.pyplot as plt
 import numpy as np
 import torch
-import matplotlib.pyplot as plt
 
 from fem.heat_solver_2d import solve_steady_state_heat_2d
 from pinn.inference import load_model
@@ -41,7 +42,7 @@ def generate_benchmark_artifacts():
     error = T_pinn - T_solver
 
     mae = np.mean(np.abs(error))
-    rmse = np.sqrt(np.mean(error ** 2))
+    rmse = np.sqrt(np.mean(error**2))
     max_error = np.max(np.abs(error))
 
     with open("results/benchmark_metrics.csv", "w", newline="") as f:

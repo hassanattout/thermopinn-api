@@ -1,12 +1,12 @@
 import time
-import numpy as np
 from pathlib import Path
+
+import numpy as np
 from fastapi import HTTPException
 from fastapi.responses import FileResponse
 
 from fem.heat_solver_2d import solve_steady_state_heat_2d
 from fem.visualize import generate_thermal_map
-
 
 RESULTS_DIR = Path("results")
 

@@ -35,7 +35,7 @@ def compare_pinn_vs_solver():
     error = T_pinn - T_solver
 
     mae = np.mean(np.abs(error))
-    rmse = np.sqrt(np.mean(error ** 2))
+    rmse = np.sqrt(np.mean(error**2))
     max_error = np.max(np.abs(error))
 
     print("PINN vs Solver Comparison")

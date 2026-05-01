@@ -1,10 +1,11 @@
 import time
+
 import numpy as np
 from fastapi import HTTPException
 
+from app.services.pinn_service import pinn_service
 from fem.heat_solver_2d import solve_steady_state_heat_2d
 from pinn.inference import predict_temperature
-from app.services.pinn_service import pinn_service
 
 
 def compare_fem_vs_pinn(data):
@@ -45,7 +46,7 @@ def compare_fem_vs_pinn(data):
     error = pinn_temperature - fem_temperature
 
     mae = float(np.mean(np.abs(error)))
-    rmse = float(np.sqrt(np.mean(error ** 2)))
+    rmse = float(np.sqrt(np.mean(error**2)))
     max_error = float(np.max(np.abs(error)))
 
     speedup = fem_time / pinn_time if pinn_time > 0 else None
