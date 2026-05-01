@@ -1,10 +1,10 @@
 import time
-import numpy as np
 from pathlib import Path
+
+import numpy as np
 from fastapi import HTTPException
 
 from pinn.inference import load_model, predict_temperature
-
 
 MODEL_PATH = Path("models/pinn_model.pth")
 
@@ -52,11 +52,13 @@ class PINNService:
 
         for point in points:
             temp = predict_temperature(self.model, point.x, point.y)
-            predictions.append({
-                "x": point.x,
-                "y": point.y,
-                "predicted_temperature": float(temp),
-            })
+            predictions.append(
+                {
+                    "x": point.x,
+                    "y": point.y,
+                    "predicted_temperature": float(temp),
+                }
+            )
 
         inference_time = time.perf_counter() - start
 

@@ -1,4 +1,5 @@
 import torch
+
 from pinn.model import PINN
 
 

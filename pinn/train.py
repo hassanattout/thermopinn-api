@@ -1,8 +1,8 @@
-import torch
 import numpy as np
+import torch
 
-from pinn.model import PINN
 from fem.heat_solver_2d import solve_steady_state_heat_2d
+from pinn.model import PINN
 
 
 def train_pinn(epochs=5000):
