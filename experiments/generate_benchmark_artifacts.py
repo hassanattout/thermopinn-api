@@ -94,6 +94,7 @@ def generate_benchmark_artifacts():
     print("Benchmark artifacts generated:")
     print("results/benchmark_metrics.csv")
     print("results/error_metrics.png")
+    print("results/pinn_vs_solver_comparison.png")
 
 
 if __name__ == "__main__":
