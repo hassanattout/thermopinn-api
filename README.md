@@ -269,46 +269,6 @@ The `$PORT` variable is provided automatically by Render.
 
 ---
 
-## Project Structure
-
-```text
-thermopinn-api/
-├── app/
-│   ├── main.py
-│   ├── api/
-│   │   └── routes.py
-│   ├── schemas/
-│   │   └── thermal.py
-│   └── services/
-│       ├── pinn_service.py
-│       ├── fem_service.py
-│       └── comparison_service.py
-├── fem/
-│   ├── heat_solver_2d.py
-│   └── visualize.py
-├── pinn/
-│   ├── model.py
-│   ├── train.py
-│   ├── inference.py
-│   └── visualize_pinn.py
-├── experiments/
-│   ├── compare_pinn_vs_solver.py
-│   └── generate_benchmark_artifacts.py
-├── models/
-│   └── pinn_model.pth
-├── results/
-│   ├── thermal_map.png
-│   ├── pinn_thermal_map.png
-│   ├── error_metrics.png
-│   └── benchmark_metrics.csv
-├── requirements.txt
-└── README.md
-```
-
----
-
-
-
 ## Production API Endpoints
 
 | Method | Endpoint | Purpose |
