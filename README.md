@@ -321,7 +321,6 @@ This project demonstrates engineering + ML integration through a structured work
 
 ---
 
-## Update
+## Note
 
-Minor documentation improvement for clarity and structure.
-
+This project follows a structured engineering workflow.
