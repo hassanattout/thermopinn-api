@@ -302,3 +302,9 @@ The `/compare` endpoint is the core validation layer. It shows whether the learn
 Hassan Attout  
 Mechanical & Energy Engineering  
 AI for Engineering Systems
+
+---
+
+## Update
+
+Minor documentation improvement for clarity and structure.
