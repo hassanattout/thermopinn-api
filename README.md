@@ -284,6 +284,16 @@ The `$PORT` variable is provided automatically by Render.
 
 The `/compare` endpoint is the core validation layer. It shows whether the learned PINN surrogate can approximate the numerical physics solver while reducing inference time.
 
+---
+
+## Limitations
+
+- The current model approximates a simplified 2D steady-state thermal field.
+- Boundary conditions and geometry are intentionally simplified for this prototype.
+- The API is designed as an engineering ML demonstration, not a production-certified solver.
+
+---
+
 ## Future Improvements
 
 - 3D thermal modeling
