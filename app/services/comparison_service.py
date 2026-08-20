@@ -11,8 +11,8 @@ from pinn.inference import predict_temperature
 def compare_fem_vs_pinn(data):
     if pinn_service.model is None:
         raise HTTPException(
-            status_code=500,
-            detail=f"PINN model not loaded. Status: {pinn_service.status}",
+            status_code=503,
+            detail="Thermal surrogate model is unavailable.",
         )
 
     fem_start = time.perf_counter()
