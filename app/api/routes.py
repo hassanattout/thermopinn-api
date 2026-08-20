@@ -1,9 +1,12 @@
-from pathlib import Path
-
 from fastapi import APIRouter
 
-from app.schemas.thermal import (BatchPointInput, GridInput, PointInput,
-                                 SimulationInput)
+from app.core.config import settings
+from app.schemas.thermal import (
+    BatchPointInput,
+    GridInput,
+    PointInput,
+    SimulationInput,
+)
 from app.services.comparison_service import compare_fem_vs_pinn
 from app.services.fem_service import (get_metrics_file, get_thermal_map_file,
                                       run_simulation)
@@ -17,7 +20,7 @@ def root():
     return {
         "message": "ThermoPINN API",
         "status": "running",
-        "version": "1.0.0",
+        "version": settings.app_version,
         "model_status": pinn_service.status,
     }
 

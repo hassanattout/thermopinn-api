@@ -1,3 +1,4 @@
+import logging
 import time
 from pathlib import Path
 
@@ -7,6 +8,7 @@ from fastapi import HTTPException
 from pinn.inference import load_model, predict_temperature
 
 MODEL_PATH = Path("models/pinn_model.pth")
+logger = logging.getLogger(__name__)
 
 
 class PINNService:
@@ -19,15 +21,16 @@ class PINNService:
         try:
             self.model = load_model()
             self.status = "loaded"
-        except Exception as e:
+        except Exception:
+            logger.exception("Failed to load the thermal surrogate model")
             self.model = None
-            self.status = f"error: {str(e)}"
+            self.status = "error"
 
     def ensure_loaded(self):
         if self.model is None:
             raise HTTPException(
-                status_code=500,
-                detail=f"PINN model not loaded. Status: {self.status}",
+                status_code=503,
+                detail="Thermal surrogate model is unavailable.",
             )
 
     def predict_point(self, x: float, y: float):

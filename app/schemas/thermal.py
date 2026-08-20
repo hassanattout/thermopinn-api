@@ -1,14 +1,21 @@
-from typing import List
-
 from pydantic import BaseModel, Field
 
 
 class SimulationInput(BaseModel):
-    length: float = Field(default=0.1, gt=0, description="Plate length in meters")
-    width: float = Field(default=0.05, gt=0, description="Plate width in meters")
-    heat_power: float = Field(default=100000, gt=0, description="Heat source power")
+    length: float = Field(
+        default=0.1, gt=0, le=10, description="Plate length in meters"
+    )
+    width: float = Field(
+        default=0.05, gt=0, le=10, description="Plate width in meters"
+    )
+    heat_power: float = Field(
+        default=100000, gt=0, le=10_000_000, description="Heat-source term"
+    )
     ambient_temperature: float = Field(
-        default=25.0, description="Boundary temperature in Celsius"
+        default=25.0,
+        ge=-100,
+        le=500,
+        description="Boundary temperature in Celsius",
     )
 
 
@@ -22,7 +29,7 @@ class PointInput(BaseModel):
 
 
 class BatchPointInput(BaseModel):
-    points: List[PointInput] = Field(..., min_length=1, max_length=500)
+    points: list[PointInput] = Field(..., min_length=1, max_length=500)
 
 
 class GridInput(BaseModel):
